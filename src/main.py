@@ -1,8 +1,27 @@
 """
+Copyright (c) 2026, Dylan Ooijevaar
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+"""
+
+
+"""
 This overengineered tkinter script is meant to act as a front-end to ID3v2
 Mainly so I can tag audio files in peace without ever having to interact with a spooky CLI
-
 It also cuts down the filename, getting rid of leading strings like track number and album title
+
+It is a terrible way of doing this, but I made the mistake of starting out this small project, and now I have got to stick with it
 """
 
 import InitialiseElements as IE
