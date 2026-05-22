@@ -10,7 +10,7 @@ import ButtonFrames as BF
 
 def main():
     #Create the Main window
-    MainWindow = IE.CreateWindow(680, 345, "ID3v2 lazy GUI")
+    MainWindow = IE.CreateWindow(730, 410, "ID3v2 lazy GUI")
 
     #Create TextBox frames
     #This also populates the FramesDict in ButtonActions.py

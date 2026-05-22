@@ -46,14 +46,16 @@ def SetupWindowTextBoxes(MainWindow):
     FoundFilesBox      = CreateTextBox(MainWindow, WF.WidgetFrames["FoundFilesBox"], True)
     EditFilesBox       = CreateTextBox(MainWindow, WF.WidgetFrames["EditFilesBox"], True)
     CharIndexCutoffBox = CreateTextBox(MainWindow, WF.WidgetFrames["CharIndexCutoffBox"], False)
+    CharIndexLimitBox  = CreateTextBox(MainWindow, WF.WidgetFrames["CharIndexLimitBox"], False)
     TPE1Box            = CreateTextBox(MainWindow, WF.WidgetFrames["TPE1Box"], False)
     TALBBox            = CreateTextBox(MainWindow, WF.WidgetFrames["TALBBox"], False)
     TYERBox            = CreateTextBox(MainWindow, WF.WidgetFrames["TYERBox"], False)
     TCONBox            = CreateTextBox(MainWindow, WF.WidgetFrames["TCONBox"], False)
+    MessageBox         = CreateTextBox(MainWindow, WF.WidgetFrames["MessageBox"], False)
 
     BA.FramesDict = {"SourcePathBox" : SourcePathBox, "FoundFilesBox" : FoundFilesBox, "EditFilesBox" : EditFilesBox, 
-                     "CharIndexCutoffBox" : CharIndexCutoffBox,
-                     "TPE1Box" : TPE1Box, "TALBBox" : TALBBox, "TYERBox" : TYERBox, "TCONBox" : TCONBox}
+                     "CharIndexCutoffBox" : CharIndexCutoffBox, "CharIndexLimitBox" : CharIndexLimitBox,
+                     "TPE1Box" : TPE1Box, "TALBBox" : TALBBox, "TYERBox" : TYERBox, "TCONBox" : TCONBox, "MessageBox" : MessageBox}
 
 
 

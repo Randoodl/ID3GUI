@@ -34,8 +34,6 @@ def UpdateSource():
         #Catch check if the opening of a directory is cancelled
         OverwriteTextField(FramesDict["SourcePathBox"], SOURCEPATH)
         ShowFoundFiles(SOURCEPATH)
-    
-    print(SOURCEPATH)
 
 
 def ShowFoundFiles(SourceDirectoryPath):
@@ -65,30 +63,36 @@ def ShowFoundFiles(SourceDirectoryPath):
 def GetCharIndex():
     #Grab the value stored at the char index text box and use that to edit the new filenames
 
-    ReadInIndex = FramesDict["CharIndexCutoffBox"].get('1.0', Tk.END)
+    ReadInIndexStart = FramesDict["CharIndexCutoffBox"].get('1.0', Tk.END)
+    ReadInIndexEnd     = FramesDict["CharIndexLimitBox"].get('1.0', Tk.END)
 
     try:
-        #If the cutoff is valid, update the previewed names
-        i_Char = int(ReadInIndex)
+        #If the cutoffs are valid, update the previewed names
+        i_CharStart = int(ReadInIndexStart)
+        i_CharEnd   = int(ReadInIndexEnd)
+
+        #File extension to add to the chopped up name
+        FileExtension = "." + list(DictOfSongNames.keys())[0].split('.')[-1]
 
         #A silly way to cut files names with double digit song track listings correctly
         TrackNumber = 0
 
         #Dumb little false state check
         if len(DictOfSongNames) == 0:
-            OverwriteTextField(FramesDict["FoundFilesBox"], "\n No files to rename!")
+            OverwriteTextField(FramesDict["MessageBox"], "No files to rename!")
         else:
             for Filename in DictOfSongNames:
                 #This counter essentially controls how much of the filename to snip off
                 #  "1.- Song Title" and "10.- Song Title" differ by exactly 1 index
                 #  The weird boolean dance is just to make sure to keep names as is when no cutting is required
                 TrackNumber += 1
-                DictOfSongNames[Filename] = Filename[i_Char + bool(bool(i_Char) * (TrackNumber // 10)):]
+                DictOfSongNames[Filename] = Filename[i_CharStart + bool(bool(i_CharStart) * (TrackNumber // 10)):-(i_CharEnd + len(FileExtension))] + FileExtension
+
         
         UpdateNamePreviews(DictOfSongNames)
     except:
         #Display an error warning when, for some reason, the cutoff fails
-        OverwriteTextField(FramesDict["CharIndexCutoffBox"], "Invalid cutoff")
+        OverwriteTextField(FramesDict["MessageBox"], "Invalid cutoff")
 
 
 def UpdateNamePreviews(PreviewedNames):
@@ -171,15 +175,17 @@ def StartTagging():
 
     #Another dumb little false state check
     if len(DictOfSongNames) == 0:
-        OverwriteTextField(FramesDict["EditFilesBox"], "\n No files to tag!")
+        OverwriteTextField(FramesDict["MessageBox"], "No files to tag!")
     else:
         #Collect the data shared amongst all files (artist, album, year, genre)
         AllTagData = GetFieldData()
 
         #Tag all the files
+        OverwriteTextField(FramesDict["MessageBox"], "Tagging files...")
         RunTaggingCommand(AllTagData)
 
         #Rename the files, doing something funky with mv
+        OverwriteTextField(FramesDict["MessageBox"], "Renaming files...")
         for File in DictOfSongNames:
             os.system("mv \"" + SOURCEPATH + "/" + File + "\" \"" + SOURCEPATH + "/" + DictOfSongNames[File] + "\"")
 
@@ -188,3 +194,5 @@ def StartTagging():
         OverwriteTextField(FramesDict["FoundFilesBox"], "")
         for File in DictOfSongNames:
             FramesDict["FoundFilesBox"].insert(Tk.END, DictOfSongNames[File] + "\n")
+        
+        OverwriteTextField(FramesDict["MessageBox"], "Done!")

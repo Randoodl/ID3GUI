@@ -17,8 +17,8 @@ class ButtonFrame:
 ButtonFrames = {
     #                           Text                Padx   Col   Row   ColSp   RowSpan   Sticky    Action (Overwritten later)
     "SourceSelect": ButtonFrame("Open Directory",   0,     0,    0,    2,      1,        "EW",     print),
-    "GetCharIndex": ButtonFrame("Set Cutoff",       0,     7,    3,    3,      1,        "EW",     print),
-    "CutAndEncode": ButtonFrame("Cut and Encode",   0,     7,    4,    3,      4,        "NESW",   print),
+    "GetCharIndex": ButtonFrame("Isolate title",    0,     7,    4,    3,      1,        "EW",     print),
+    "CutAndEncode": ButtonFrame("Cut and Encode",   0,     7,    6,    3,      4,        "NESW",   print),
 }
 
 ListOfButtons = ["SourceSelect", "GetCharIndex", "CutAndEncode"]
