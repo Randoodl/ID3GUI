@@ -15,7 +15,8 @@ ID3GUI is a graphical interface to batch rename and tag entire albums of songs. 
 into a neatly tagged:
 >Song_Title.mp3
 
-I am no audio codec expert, but it appears to be able to tag .flac files in much the same way.
+I am no audio codec expert, but it appears to be able to tag .flac files in much the same way.  
+This is far from the best way of doing it, but it is what works for me and thus it is what I decide to chuck into this repo.
 
 ### Features
 - **Set up ID3 tags for Artists, Albums, Release Year, Genre, Track Number and Song Title in one fell swoop**
@@ -46,3 +47,4 @@ You can simply navigate to the directory, manually set the song title extraction
 ### Motivation
 The sudden decision to organise my several decades' worth of songs came with the equally sudden and sinking realisation that hardly any of them were titled or tagged correctly.  
 Now, I am too lazy to automate everything with a bash script, but I am not above wasting a few days shoddily cobbling together a GUI to ease the pain of tagging aforementioned collection.  
+Perhaps, this abomination of patched together bits and bobs of python can resemble enough of a program to be useful to someone else, too.
