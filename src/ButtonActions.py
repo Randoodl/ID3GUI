@@ -52,7 +52,7 @@ def ShowFoundFiles(SourceDirectoryPath):
     if Path(SourceDirectoryPath).is_dir():
         for File in os.listdir(SourceDirectoryPath):
             #Fie type is checking by checking the extension after the first period, forced lowercase
-            if File.split('.')[-1].lower() in ["flac", "mp3", "ext"]:
+            if File.split('.')[-1].lower() in ["flac", "mp3"]:
                 UnsortedSongs.append(File)
                 
     for Song in natsorted(UnsortedSongs):
@@ -64,14 +64,15 @@ def GetCharIndex():
     #Grab the value stored at the char index text box and use that to edit the new filenames
 
     ReadInIndexStart = FramesDict["CharIndexCutoffBox"].get('1.0', Tk.END)
-    ReadInIndexEnd     = FramesDict["CharIndexLimitBox"].get('1.0', Tk.END)
+    ReadInIndexEnd   = FramesDict["CharIndexLimitBox"].get('1.0', Tk.END)
 
     try:
         #If the cutoffs are valid, update the previewed names
         i_CharStart = int(ReadInIndexStart)
         i_CharEnd   = int(ReadInIndexEnd)
 
-        #File extension to add to the chopped up name
+        #File extension to add to the chopped up name in the most heinous way imaginable
+        #Sometimes I just write monstrous code and I do not care if God will forgive me
         FileExtension = "." + list(DictOfSongNames.keys())[0].split('.')[-1]
 
         #A silly way to cut files names with double digit song track listings correctly
@@ -82,12 +83,15 @@ def GetCharIndex():
             OverwriteTextField(FramesDict["MessageBox"], "No files to rename!")
         else:
             for Filename in DictOfSongNames:
+                #This gets rid of leading zeroes if song titles are listed as "01 - Song" instead of "1 - Song"
+                ZeroCounter = 1 if Filename[0] == "0" else 0
+
                 #This counter essentially controls how much of the filename to snip off
                 #  "1.- Song Title" and "10.- Song Title" differ by exactly 1 index
                 #  The weird boolean dance is just to make sure to keep names as is when no cutting is required
                 TrackNumber += 1
-                DictOfSongNames[Filename] = Filename[i_CharStart + bool(bool(i_CharStart) * (TrackNumber // 10)):-(i_CharEnd + len(FileExtension))] + FileExtension
-
+                DictOfSongNames[Filename] = Filename[ZeroCounter + i_CharStart + bool(bool(i_CharStart) * (TrackNumber // 10)):-(i_CharEnd + len(FileExtension))] + FileExtension
+   
         
         UpdateNamePreviews(DictOfSongNames)
     except:
@@ -173,6 +177,11 @@ def CreateNewSongNameDict():
 def StartTagging():
     #Begin the process of querying the text fields for data, renaming the file names and setting the ID3 tags
 
+    #Change the default linux move command if running on windows
+    MoveCommand = "mv \""
+    if os.name == "nt":
+        MoveCommand  = "move \""
+
     #Another dumb little false state check
     if len(DictOfSongNames) == 0:
         OverwriteTextField(FramesDict["MessageBox"], "No files to tag!")
@@ -184,10 +193,10 @@ def StartTagging():
         OverwriteTextField(FramesDict["MessageBox"], "Tagging files...")
         RunTaggingCommand(AllTagData)
 
-        #Rename the files, doing something funky with mv
+        #Rename the files, doing something funky with mv/move
         OverwriteTextField(FramesDict["MessageBox"], "Renaming files...")
         for File in DictOfSongNames:
-            os.system("mv \"" + SOURCEPATH + "/" + File + "\" \"" + SOURCEPATH + "/" + DictOfSongNames[File] + "\"")
+            os.system(MoveCommand + SOURCEPATH + "/" + File + "\" \"" + SOURCEPATH + "/" + DictOfSongNames[File] + "\"")
 
         #Lastly, reset the Dict and update the FoundFilesBox to reflect the change in names
         CreateNewSongNameDict()
