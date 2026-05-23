@@ -42,7 +42,17 @@ Assuming you have an assortment of untagged songs from one album chucked in a di
 >...  
 >└─ 10_Final Song_Band_AlbumTitle.mp3  
 
-You can simply navigate to the directory, manually set the song title extraction range, set up the tags as needed and hit the Encode button.
+You can simply navigate to the directory, manually set the song title extraction range, set up the tags as needed and hit the Encode button. Which would leave you with a neat:
+
+>AlbumTitle/   
+>├─ Song.mp3  
+>├─ Another Song.mp3  
+>...  
+>└─ Final Song.mp3  
+
+> [!WARNING]  
+> This will mess up your files if you're not careful. It is highly recommended to back up your .mp3s before you work on them. 
+Ask me how I know.
 
 ### 🔍 Motivation
 The sudden decision to organise my several decades' worth of songs came with the equally sudden and sinking realisation that hardly any of them were titled or tagged correctly.  

@@ -28,10 +28,11 @@ def UpdateSource():
     #Update the absolute filepath from where to source files
     global SOURCEPATH
 
-    SOURCEPATH = filedialog.askdirectory(title="Select Source Directory")
+    NewSourcePath = filedialog.askdirectory(title="Select Source Directory")
 
-    if SOURCEPATH != "":
+    if len(NewSourcePath):
         #Catch check if the opening of a directory is cancelled
+        SOURCEPATH = NewSourcePath
         OverwriteTextField(FramesDict["SourcePathBox"], SOURCEPATH)
         ShowFoundFiles(SOURCEPATH)
 
@@ -57,7 +58,7 @@ def ShowFoundFiles(SourceDirectoryPath):
                 
     for Song in natsorted(UnsortedSongs):
         DictOfSongNames[Song] = Song
-        FramesDict["FoundFilesBox"].insert(Tk.END, Song + "\n")
+        FramesDict["FoundFilesBox"].insert(Tk.END, str(Song) + "\n")
         
 
 def GetCharIndex():
