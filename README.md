@@ -50,6 +50,8 @@ You can simply navigate to the directory, manually set the song title extraction
 >...  
 >└─ Final Song.mp3  
 
+If you are fine with the file names as is, you can just set the ranges to 0, the renaming is completely optional.
+
 > [!WARNING]  
 > This will mess up your files if you're not careful. It is highly recommended to back up your .mp3s before you work on them. 
 Ask me how I know.
