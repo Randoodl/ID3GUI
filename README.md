@@ -5,10 +5,10 @@ Unsurprisingly, a shoddy GUI to automate issuing [id3v2](https://github.com/myer
 + [About](#about)
 + [Features](#features)
 + [Prerequisites](#prerequisites)
-+ [Running the dang thing](#Usage)
++ [Running the dang thing](#usage)
 + [Why](#motivation)
 
-### ❓ About
+### ❓ About <a name = "about"></a>
 ID3GUI is a graphical interface to batch rename and tag entire albums of songs. Specifically, it issues id3v2 commands in order to tag .mp3 files; turning untagged trainwrecks like:
 >1 - Song_Title - BAND.mp3  
 
@@ -18,16 +18,16 @@ into a neatly tagged:
 I am no audio codec expert, but it appears to be able to tag .flac files in much the same way.  
 This is far from the best way of doing it, but it is what works for me and thus it is what I decide to chuck into this repo.
 
-### 🛠️ Features
+### 🛠️ Features <a name = "features"></a>
 - **Set up ID3 tags for Artists, Albums, Release Year, Genre, Track Number and Song Title in one fell swoop**
 - **Extract an album's song titles from filenames and batch rename said files**
 - **100% idiot coded, not a single shred of AI used in this crime against python**
 
-### ✅ Prerequisites
+### ✅ Prerequisites <a name = "prerequisites"></a>
 + id3v2 installed on your system (https://id3v2.sourceforge.net)
 + Python 3.7 or greater
 
-### ⌨️ Usage
+### ⌨️ Usage <a name = "usage"></a>
 
 ```sh
 git clone https://github.com/Randoodl/ID3GUI
@@ -56,7 +56,7 @@ If you are fine with the file names as is, you can just set the ranges to 0, the
 > This will mess up your files if you're not careful. It is highly recommended to back up your .mp3s before you work on them. 
 Ask me how I know.
 
-### 🔍 Motivation
+### 🔍 Motivation <a name = "motivation"></a>
 The sudden decision to organise my several decades' worth of songs came with the equally sudden and sinking realisation that hardly any of them were titled or tagged correctly.  
 Now, I am too lazy to automate everything with a bash script, but I am not above wasting a few days shoddily cobbling together a GUI to ease the pain of tagging aforementioned collection.  
 Perhaps, this abomination of patched together bits and bobs of python can resemble enough of a program to be useful to someone else, too.
